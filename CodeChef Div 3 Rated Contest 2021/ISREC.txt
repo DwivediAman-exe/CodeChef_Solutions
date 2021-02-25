@@ -1,0 +1,58 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+typedef long double ld;
+typedef long long int ll;
+typedef unsigned long long int ull;
+const long long int m=pow(10,9)+7;
+
+int main() 
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll t,n,m;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>m;
+        int rowmin=501,rowmax=-1,colmin=501,colmax=-1;
+        vector<string>v;
+        for(int i=0;i<n;i++)
+        {
+            string s;
+            cin>>s;
+            v.push_back(s);
+        }
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                if(v[i][j]=='1')
+                {
+                    if(i<rowmin)
+                        rowmin=i;
+                    if(i>rowmax)
+                        rowmax=i;
+                    if(j<colmin)
+                        colmin=j;
+                    if(j>colmax)
+                        colmax=j;
+                }
+        int flag=1;
+        
+        for(int i=rowmin;i<=rowmax;i++)
+        {
+            for(int j=colmin;j<=colmax;j++)
+            {
+                if(v[i][j]!='1')
+                {
+                    flag=0;break;
+                }
+            if(flag==0)
+                break;
+            }
+        }
+        if(flag==1)
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO"<<endl;
+    }
+    return 0;
+}
